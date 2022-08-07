@@ -3,8 +3,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
 import { makeStyles } from '@material-ui/core';
+import classnames from 'classnames';
 import useObserver from '../../hooks/useObserver';
 
 const useStyles = makeStyles(() => ({
@@ -53,19 +53,23 @@ const ImageCard: FC<IImageCardProps> = ({ url, title, longTitle, isLast, nextPag
    }, [animatedEntry]);
 
    return (
-      <Card sx={{ maxWidth: 400 }} className={`${classes.card} ${isVisible ? classes.show : ''}`}>
+      <Card
+         sx={{ maxWidth: 400 }}
+         className={classnames({
+            [classes.card]: true,
+            [classes.show]: isVisible,
+         })}
+      >
          <div ref={targetRef}></div>
-         <CardActionArea>
-            <CardMedia component="img" height="245" image={imageUrl} data-src={url} alt={title} />
-            <CardContent>
-               <Typography gutterBottom variant="h5" component="div">
-                  ${title}
-               </Typography>
-               <Typography variant="body2" color="text.secondary">
-                  ${longTitle}
-               </Typography>
-            </CardContent>
-         </CardActionArea>
+         <CardMedia component="img" height="245" image={imageUrl} data-src={url} alt={title} />
+         <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+               ${title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+               ${longTitle}
+            </Typography>
+         </CardContent>
       </Card>
    );
 };
