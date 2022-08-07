@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import { ErrorMessage, Loader } from '../../components';
 import ImageCard from '../../components/ImageCard';
@@ -26,16 +26,29 @@ export interface IHomePageProps {}
 
 const HomePage: FC<IHomePageProps> = () => {
    const classes = useStyles();
-   const { data, loading, error } = useFetch('nl/collection');
-   const [displayData, setDisplayData] = useState(8);
+
+   const [page, setPage] = useState(0);
+   const { data, loading, error } = useFetch('nl/collection', page);
+   const [displayData, setDisplayData] = useState<any>([]);
+
+   useEffect(() => {
+      if (data) {
+         setDisplayData((prev: any) =>
+            [...prev, ...data?.artObjects].reduce((acc, current) => {
+               const content = acc.find((item: { id: string }) => item.id === current.id);
+               if (!content) {
+                  return acc.concat([current]);
+               } else {
+                  return acc;
+               }
+            }, [])
+         );
+      }
+   }, [data]);
 
    const nextPage = () => {
-      setDisplayData((prev) => prev + 2);
+      setPage((prev) => prev + 1);
    };
-
-   if (loading) {
-      return <Loader />;
-   }
 
    if (error) {
       return <ErrorMessage />;
@@ -44,22 +57,23 @@ const HomePage: FC<IHomePageProps> = () => {
    return (
       <>
          <div className={classes.cards}>
-            {(data?.artObjects.slice(0, displayData) || []).map(
+            {displayData?.map(
                (
-                  art: { webImage: any; id: string; title: string; longTitle: string },
+                  art: { webImage: { url: string }; id: string; title: string; longTitle: string },
                   index: number
                ) => (
                   <ImageCard
                      key={art.id}
                      title={art.title}
-                     url={art.webImage.url}
+                     url={art.webImage?.url}
                      longTitle={art.longTitle}
-                     isLast={index === displayData - 1}
+                     isLast={index === displayData.length - 1}
                      nextPage={nextPage}
                   />
                )
             )}
          </div>
+         <div>{loading && <Loader />}</div>
       </>
    );
 };
