@@ -1,46 +1,24 @@
-# Getting Started with Create React App
+# Museum
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Libraries/Frameworks used
 
-## Available Scripts
+-  **Frontend** : React, TypeScript, Material UI, Jest, React Testing Library.
 
-In the project directory, you can run:
+## Design decisions
 
-### `npm start`
+-  **Code Organisation** : The `components` directory contains all the reusable artifacts. The `hooks` contains all the custom hooks used. The `pages` directory contain the navigable pages in the UI.
+-  **Testing** : The usecases are covered with integration testing using React testing library. The components have unit tests using Jest.
+-  **Component library** : Components and Grid system of [material-ui](https://material-ui.com/) is used. 
+- **Component styling** : CSS-in-JS solution of material-ui is used.
+-  **Linting & Formatting** : The default ESLint is used. Prettier for code formatting. husky and lint-staged are used as auxiliary library.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## To run locally
+- Inside the directory, run `npm install` to install the frontend dependencies. 
+- Start the frontend dev server using `npm start`.
+- To run tests run `npm test`. This launches the test runner in the interactive watch mode.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Test cases snapshot
 
-### `npm test`
+![Snapshot of backend cases](/docs/testcases.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Thanks for your time :)
