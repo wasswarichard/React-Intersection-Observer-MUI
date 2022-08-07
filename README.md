@@ -1,4 +1,4 @@
-# Museum
+# Museum Gallery
 
 ## Libraries/Frameworks used
 
