@@ -2,7 +2,7 @@
 
 ## Libraries/Frameworks used
 
--  **Frontend** : React, TypeScript, Material UI, Jest, React Testing Library.
+-  React, TypeScript, Material UI, Jest, React Testing Library.
 
 ## Design decisions
 
@@ -19,6 +19,6 @@
 
 ## Test cases snapshot
 
-![Snapshot of backend cases](/docs/testcases.png)
+![Snapshot of testcases](/docs/testcases.PNG)
 
 Thanks for your time :)
